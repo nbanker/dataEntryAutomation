@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
 const xlsx = require('xlsx');
-const provision  = xlsx.readFile('./provision.xls');
-const rows = xlsx.utils.sheet_to_json(provision.Sheets.PROV, {header: 1});
 
+const provision  = xlsx.readFile('./data.xlsx');
+const sheets = provision.SheetNames;
+const rows = xlsx.utils.sheet_to_json(provision.Sheets[sheets[0]]);
 
 app.get('/', (req, res) => {
   res.send(rows);
